@@ -1,0 +1,253 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@config '../../../tailwind.config.mjs';
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+@custom-variant sm (@media (width >= theme(--breakpoint-sm)));
+@custom-variant md (@media (width >= theme(--breakpoint-md)));
+@custom-variant lg (@media (width >= theme(--breakpoint-lg)));
+@custom-variant xl (@media (width >= theme(--breakpoint-xl)));
+@custom-variant 2xl (@media (width >= theme(--breakpoint-2xl)));
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: unset;
+    font-size: unset;
+  }
+}
+
+@plugin "@tailwindcss/typography";
+
+@source inline("lg:col-span-4");
+@source inline("lg:col-span-6");
+@source inline("lg:col-span-8");
+@source inline("lg:col-span-12");
+@source inline("border-border");
+@source inline("bg-card");
+@source inline("border-error");
+@source inline("bg-error/30");
+@source inline("border-success");
+@source inline("bg-success/30");
+@source inline("border-warning");
+@source inline("bg-warning/30");
+
+@theme {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
+  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-nunito);
+}
+
+@layer utilities {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @variant sm {
+    .container {
+      max-width: var(--breakpoint-sm);
+    }
+  }
+
+  @variant md {
+    .container {
+      max-width: var(--breakpoint-md);
+      padding-inline: 2rem;
+    }
+  }
+
+  @variant lg {
+    .container {
+      max-width: var(--breakpoint-lg);
+    }
+  }
+
+  @variant xl {
+    .container {
+      max-width: var(--breakpoint-xl);
+    }
+  }
+
+  @variant 2xl {
+    .container {
+      max-width: var(--breakpoint-2xl);
+    }
+  }
+}
+
+/* Paleta "Amanecer" (sale del logo): índigo = estructura, ámbar = acción, salvia = decoración, sobre crema.
+   Contrastes verificados WCAG AA. La salvia (--sage) es solo decorativa: nunca para texto.
+   Todos los componentes usan estos tokens, nunca hex sueltos. */
+:root {
+  --sand: #f5eee2;
+  --sage: #7a9e7e;
+  --eyebrow: #4a6b4f;
+  --deep: #0b2f4e;
+  --deep-foreground: #f4f1ea;
+  --highlight: #f5b72e;
+  --on-deep: #f5b72e;
+  --background: #fbf8f3;
+  --foreground: #1c2430;
+  --card: #eaf1f8;
+  --card-foreground: #1c2430;
+  --popover: #ffffff;
+  --popover-foreground: #1c2430;
+  --primary: #1e3a5f;
+  --primary-foreground: #ffffff;
+  --secondary: #dfe8f3;
+  --secondary-foreground: #1e3a5f;
+  --muted: #f0ece4;
+  --muted-foreground: #5a6270;
+  --accent: #f5b72e;
+  --accent-hover: #e6a61e;
+  --accent-foreground: #1c2430;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --border: #e3ddd2;
+  --input: #c9c1b3;
+  --ring: #1e3a5f;
+  --radius: 0.625rem;
+  --success: #dcebdc;
+  --warning: #fbecc4;
+  --error: #f6d8d4;
+}
+
+[data-theme='dark'] {
+  --sand: #141e2e;
+  --sage: #7a9e7e;
+  --eyebrow: #a8c7ab;
+  --deep: #16263f;
+  --deep-foreground: #ece8df;
+  --highlight: #f5b72e;
+  --on-deep: #f5b72e;
+  --background: #0f1724;
+  --foreground: #ece8df;
+  --card: #182235;
+  --card-foreground: #ece8df;
+  --popover: #182235;
+  --popover-foreground: #ece8df;
+  --primary: #9dbce6;
+  --primary-foreground: #0f1724;
+  --secondary: #1f2c44;
+  --secondary-foreground: #ece8df;
+  --muted: #1a2538;
+  --muted-foreground: #a9b1be;
+  --accent: #f5b72e;
+  --accent-hover: #ffc94d;
+  --accent-foreground: #0f1724;
+  --destructive: #f97066;
+  --destructive-foreground: #0f1724;
+  --border: #26324a;
+  --input: #3a4863;
+  --ring: #f5b72e;
+  --success: #1d3a2a;
+  --warning: #3d3216;
+  --error: #4a1f1c;
+}
+
+/* Secciones oscuras: el anillo de foco y los botones "primary" se invierten para no desaparecer */
+[data-section='navy'] {
+  --ring: var(--on-deep);
+  --primary: var(--deep-foreground);
+  --primary-foreground: var(--deep);
+}
+
+@theme inline {
+  --color-sand: var(--sand);
+  --color-sage: var(--sage);
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
+  --color-highlight: var(--highlight);
+  --color-on-deep: var(--on-deep);
+  --color-eyebrow: var(--eyebrow);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  /* Foco visible por defecto para todo lo enfocable (links hechos a mano incluidos) */
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    body {
+      transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Equilibrio: títulos con tipografía cálida y redondeada */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Títulos del editor de texto enriquecido: peso y color de marca */
+.payload-richtext :is(h1, h2, h3, h4) {
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+[data-section='navy'] .payload-richtext :is(h1, h2, h3, h4) {
+  color: var(--deep-foreground);
+}
